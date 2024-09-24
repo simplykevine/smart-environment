@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback</title>
+    <style>
+        body {
+            background-color: rgb(118, 228, 118);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .feedback-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        .emoji-wrapper {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 10px;
+        }
+        .emoji-box {
+            text-align: center;
+        }
+        .emoji {
+            font-size: 2em;
+            cursor: pointer;
+            margin: 5px;
+            transition: transform 0.2s;
+        }
+        .emoji:hover {
+            transform: scale(1.2);
+        }
+        .highlighted {
+            border: 2px solid #ff0;
+            border-radius: 50%;
+        }
+        .hidden {
+            display: none;
+        }
+        .thumbs-up {
+            font-size: 2.5em;
+            color: #28a745;
+            margin-top: 10px;
+        }
+        .comment-box {
+            margin-top: 10px;
+            display: none;
+        }
+        .submit-btn {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="feedback-box">
+    <h3>How satisfied are you?</h3>
+
+    <!-- Emoji Feedback with Numbers -->
+    <div class="emoji-wrapper">
+        <!-- Emoji 1 -->
+        <div class="emoji-box">
+            <span class="emoji" id="emoji-1" data-value="1">😡</span>
+            <p>1</p>
+        </div>
+
+        <!-- Emoji 2 -->
+        <div class="emoji-box">
+            <span class="emoji" id="emoji-2" data-value="2">😕</span>
+            <p>2</p>
+        </div>
+
+        <!-- Emoji 3 -->
+        <div class="emoji-box">
+            <span class="emoji" id="emoji-3" data-value="3">😐</span>
+            <p>3</p>
+        </div>
+
+        <!-- Emoji 4 -->
+        <div class="emoji-box">
+            <span class="emoji" id="emoji-4" data-value="4">😁</span> 
+            <p>4</p>
+        </div>
+
+        <!-- Emoji 5 -->
+        <div class="emoji-box">
+            <span class="emoji" id="emoji-5" data-value="5">😊</span>
+            <p>5</p>
+        </div>
+    </div>
+
+    <!-- Thumbs Up and Comment Box -->
+    <div class="thumbs-up hidden" id="thumbsUp">👍</div>
+    <div class="comment-box" id="commentBox">
+        <p>Thank you for your feedback! Can you add a comment to help us improve?</p>
+        <textarea id="comment" rows="3" style="width: 100%;"></textarea>
+    </div>
+
+    <!-- Submit Button -->
+    <button class="submit-btn hidden" id="submitBtn">Submit Feedback</button>
+</div>
+
+<script>
+    // Select all emoji elements
+    const emojis = document.querySelectorAll('.emoji');
+    const thumbsUp = document.getElementById('thumbsUp');
+    const commentBox = document.getElementById('commentBox');
+    const submitBtn = document.getElementById('submitBtn');
+
+    emojis.forEach(emoji => {
+        emoji.addEventListener('click', function () {
+            // Remove highlight from all emojis
+            emojis.forEach(e => e.classList.remove('highlighted'));
+
+            // Hide all emojis except the selected one
+            emojis.forEach(e => {
+                if (e !== this) {
+                    e.classList.add('hidden');
+                }
+            });
+
+            // Highlight the selected emoji
+            this.classList.add('highlighted');
+
+            // Show thumbs-up and comment box
+            thumbsUp.classList.remove('hidden');
+            commentBox.style.display = 'block';
+            submitBtn.classList.remove('hidden');
+        });
+    });
+
+    // Redirect to dashboard after submitting feedback
+    submitBtn.addEventListener('click', function () {
+        // Optional: Capture the comment and feedback value here
+        const selectedEmoji = document.querySelector('.highlighted').dataset.value;
+        const comment = document.getElementById('comment').value;
+
+        // Redirect to dashboard.html
+        window.location.href = 'dashboard.html';
+    });
+</script>
+
+</body>
+</html>

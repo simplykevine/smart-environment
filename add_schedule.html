@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add/Edit Schedule</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f5f5f5;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .form-group label {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="form-title">Add Schedule</h1>
+        <form id="schedule-form">
+            <div class="form-group">
+                <label for="routeId">Route</label>
+                <select class="form-control" id="routeId" required>
+                    <option value="Kigali-Muhima">Kigali-Muhima</option>
+                    <option value="kigali-gisozi">Kigali-Gisozi</option>
+                    <option value="kigali-kacyiru">Kigali-Kacyiru</option>
+                    <option value="kigali-kimihurura">Kigali-Kimihurura</option>
+                    <option value="kigali-Kicukiro">Kigali-Kicukiro</option>
+                    <option value="kigali-Nyarugenge">Kigali-Nyarugenge</option>
+                    <option value="kigali-Kabuga">Kigali-Kabuga</option>
+                    <option value="kigali-Masaka">Kigali-Masaka</option>
+                    <option value="kigali-Nyarutarama">Kigali-Nyarutarama</option>
+                    <!-- Add more routes here -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="pickupDate">Pickup Date</label>
+                <input type="date" class="form-control" id="pickupDate" required>
+            </div>
+            <div class="form-group">
+                <label for="pickupTime">Pickup Time</label>
+                <input type="time" class="form-control" id="pickupTime" required>
+            </div>
+            <div class="form-group">
+                <label for="status">Status</label>
+                <select class="form-control" id="status" required>
+                    <option value="Scheduled">Scheduled</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Missed">Missed</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('schedule-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                // Here, you can add code to store data locally if needed.
+                
+                // Simulate success message and redirection
+                alert('TA-DA, well done! Your schedule has been saved.');
+                window.location.href = 'dashboard.html'; // Redirect to dashboard.html
+            });
+        });
+    </script>
+</body>
+</html>
